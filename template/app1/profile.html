@@ -1,0 +1,49 @@
+{% extends 'app1/layout/base.html' %}
+{% load static %}
+{% block body_block %}
+
+<div style="margin-left: 500px;">
+    <section class="tm-section">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+    
+
+    <h1>PROFILE </h1>
+   
+
+    {% if profile_pic %}
+    <div> <img src="/media/{{profile_pic.image}}" width="150px," sizes="150px"></div>
+    {% else %}
+    <div ><img src="{% static 'app1/image/images1234.png' %}" width="150px," sizes="150px"></div>
+    {% endif %}
+
+
+<form action="{% url 'profile' %}" method="post" class="tm-contact-form"  enctype="multipart/form-data"> 
+     {% csrf_token %}                           
+    
+   {{form.as_p}}
+    
+    <button type="submit" class="tm-btn">Submit</button>  
+
+</form>
+</div>
+<div>
+
+    <h3>Welcome {{ user.Name }}</h3><hr>
+    <p>Name: {{ user.Name}}</p>
+    <p>Email: {{ user.Email}}</p>
+    <p>Mobile: {{ user.Mobile}}</p>
+    <p>Username: {{ user.Username}}</p>
+
+<a href="{% url 'edit_details' id=user.id %}"><button type="submit" class="tm-btn">Edit</button></a>
+<a href="{% url 'change_pass' %}"><button type="submit" class="tm-btn">Change Password</button> </a>
+</div>
+
+
+</section>
+</div>
+</div>
+</div>
+
+{% endblock %}

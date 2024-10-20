@@ -1,0 +1,55 @@
+{% extends 'app1/layout/base.html' %}
+{% load static %}
+{% block body_block %}
+        <div class="tm-contact-img-container">
+            
+        </div>
+
+        <section class="tm-section">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+
+                        <section>
+                                 {% if request.session.id  %}
+                                <h3 class="tm-gold-text tm-form-title">Edit Your Post</h3>
+                               {% endif %}
+
+                               {% if msg %}
+                              <div class="alert alert-success" role="alert">
+                               Data saved Successfully
+                              </div>
+                               {% endif %}
+
+                               {% if error %}
+                               <div class="alert alert-danger" role="alert">
+                                     {{error}}
+                               </div>
+                               {% endif %}
+
+                            <form action="{% url 'blog_edit' id=blog.id %}" method="post" class="tm-contact-form" enctype="multipart/form-data">                                
+                               {% csrf_token %}
+                                     {% if form.errors %}
+                                       {{form}}
+                                    <div class="alert alert-danger">
+                                     <strong>Errors:</strong>
+                                        <ul>
+                                         {% for field, field_errors in form.errors.items %}
+                                          {% for error in field_errors %}
+                                            <li>{{ field.label }}: {{ error }}</li>
+                                          {% endfor %}
+                                         {% endfor %}
+                                        </ul>
+                                    </div>
+                                         {% endif %}
+                                         <div class="form-group">
+                                           {{ form.as_p }}
+                                         </div>
+                                        <button type="submit" class="tm-btn">Update  </button>
+                             </form>   
+                        </section>
+                    </div>  
+                </div>
+            </div>
+     </section>
+{% endblock %}

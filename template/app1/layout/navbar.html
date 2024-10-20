@@ -1,0 +1,50 @@
+<div class="tm-header">
+    <div class="container-fluid">
+        <div class="tm-header-inner">
+            <a href="#" class="navbar-brand tm-site-name">SORA</a>
+            
+            <!-- navbar -->
+            <nav class="navbar tm-main-nav">
+
+                <button class="navbar-toggler hidden-md-up" type="button" data-toggle="collapse" data-target="#tmNavbar">
+                    &#9776;
+                </button>
+                
+                <div class="collapse navbar-toggleable-sm" id="tmNavbar">
+                    <ul class="nav navbar-nav">
+                        <li class="nav-item  {% if navbar == 'index' %} active {% endif %}">
+                            <a href="{% url 'index' %}" class="nav-link">Home</a>
+                        </li>
+                        
+                        <li class="nav-item  {% if navbar == 'blog' %} active {% endif %}">
+                            <a href="{% url 'blog' %}" class="nav-link">Blog</a>
+                        </li>
+
+                        {% if request.session.id %}
+
+                        <li class="nav-item  {% if navbar == 'post' %} active {% endif %}">
+                            <a href="{% url 'post' %}" class="nav-link">Post</a>
+                        </li>
+                        <li class="nav-item  {% if navbar == 'profile' %} active {% endif %}">
+                            <a href="{% url 'profile' %}" class="nav-link">{{request.session.Name}}'s Profile</a>
+                        </li>
+                        <li class="nav-item  {% if navbar == 'signout' %} active {% endif %}">
+                            <a href="{% url 'signout' %}" class="nav-link">Sign-out</a>
+                        </li>
+                        {% else %}
+
+                        <li class="nav-item  {% if navbar == 'signup' %} active {% endif %}">
+                            <a href="{% url 'signup' %}" class="nav-link">Sign-up</a>
+                        </li>
+                        <li class="nav-item  {% if navbar == 'signin' %} active {% endif %}">
+                            <a href="{% url 'signin' %}" class="nav-link">Sign-in</a>
+                        </li>
+                        {% endif %}
+                    </ul>                        
+                </div>
+                
+            </nav>  
+
+        </div>                                  
+    </div>            
+</div>

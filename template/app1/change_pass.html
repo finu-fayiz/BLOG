@@ -1,0 +1,38 @@
+{% extends 'app1/layout/base.html' %}
+{% load static %}
+{% block body_block %}
+
+<div style="margin-left: 200px; margin-right: 200px;">
+    <section class="tm-section">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                    <section>
+                         <form method="post">
+                          {% csrf_token %}
+
+                          {% if messages %}
+                            {% for message in messages %}
+                             <div class="alert alert-success" role="alert">
+                              {{ message }}
+                             </div>
+                           {% endfor %}
+                          {% endif %}
+
+                          {% if error %}
+                            <div class="alert alert-danger" role="alert">
+                                {{ error }}
+                            </div>
+                          {% endif %}
+
+                          {{ form.as_p }}
+                            
+                          <button type="submit" class="tm-btn">SAVE</button> 
+                        </form> 
+                     </section>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}

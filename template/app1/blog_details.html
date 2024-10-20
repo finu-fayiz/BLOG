@@ -1,0 +1,35 @@
+{% extends 'app1/layout/base.html' %}
+{% load static %}
+{% block body_block %}
+
+        <section class="tm-section">
+            <div class="container-fluid">
+                <div class="row">
+
+                    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-9 col-xl-9">
+
+                        {% if blog %}
+                        <div class="tm-blog-post">
+                            <h3 class="tm-gold-text">{{blog.title }}</h3>
+                           
+                            <img src="/media/{{ blog.image }}" alt="Image" class="img-fluid tm-img-post" style="margin-top: 20px;">
+                            
+                            <p>{{ blog.text}}</p>
+                        </div>
+                        
+                        {% if request.session.id  %}
+                        <p> <a href="{% url 'blog_edit' id=blog.id %}" class="btn btn-secondary tm-btn">
+                            <i class="icon-pencil" >Edit</i>
+                        </a>
+                        <a  href="{% url 'blog_delete' id=blog.id %}" class="btn btn-secondary tm-btn ">
+                          <i class="icon-pencil" >Delete</i>
+                      </a></p>
+                    </div>
+
+                    {% endif %}
+                    {% endif %}
+                </div>
+                
+            </div>
+        </section>
+ {% endblock %}
